@@ -1,0 +1,24 @@
+const fs = require("fs");
+/**
+ * Removes the key and value from the given database.
+ * @param {string} tag - The key to find and remove.
+ * @param {string} database -  The database to get the tag from.
+ */
+const clearTag = (tag, database) => {
+    let raw_data;
+    raw_data = fs.readFileSync(`./database/${database}.json`, "utf8");
+    let data = JSON.parse(raw_data);
+    let new_dta = [];
+    for (let i = 0; i < data.pairs.length; i++) {
+        if (data.pairs[i].key == tag) {
+            
+        } else {
+            new_dta.push(data.pairs[i]);
+        }
+    }
+    data.pairs = new_dta;
+    let new_data = JSON.stringify(data);
+    fs.writeFileSync(`./database/${database}.json`, new_data);
+}
+
+module.exports = clearTag;

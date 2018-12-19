@@ -1,0 +1,10 @@
+const fs = require("fs");
+/**
+ * Deletes a database from the database folder in the directory
+ * @param {string} database - The name of the database to remove
+ */
+const remove = (database) => {
+    fs.unlinkSync(`./database/${database}.json`);
+}
+
+module.exports = remove;

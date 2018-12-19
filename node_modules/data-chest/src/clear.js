@@ -1,0 +1,15 @@
+const fs = require("fs");
+/**
+ * Clears all values from the given database;
+ * @param {string} database - The database to clear.
+ */
+const clear = (database) => {
+    let raw_data;
+    raw_data = fs.readFileSync(`./database/${database}.json`, "utf8");
+    let data = JSON.parse(raw_data);
+    data.pairs = [{key:"default",value:"0"}];
+    let new_data = JSON.stringify(data);
+    fs.writeFileSync(`./database/${database}.json`, new_data);
+}
+
+module.exports = clear;
